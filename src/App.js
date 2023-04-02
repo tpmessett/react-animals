@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+
+const getRandomAnimal = () => {
+  const animals = ['bird', 'cat', 'cow', 'dog', 'gator', 'horse']
+  const random = Math.floor(Math.random() * animals.length);
+  return animals[random]
+}
 
 function App() {
+  const [animals, setAnimals] = useState([])
+  const handleClick = () => {
+    setAnimals(
+      [...animals, getRandomAnimal()]
+    )
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handleClick}>Add Animal</button>
+      <div>Animal: {animals}</div>
     </div>
   );
 }
